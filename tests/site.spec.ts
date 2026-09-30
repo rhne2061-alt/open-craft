@@ -52,7 +52,7 @@ test('static API matches the catalog and source files exist',async({request})=>{
 for(const width of [390,768,1440])test(`all pages fit viewport at ${width}px`,async({page})=>{
   await page.setViewportSize({width,height:950});
   const errors:string[]=[];page.on('pageerror',err=>errors.push(err.message));
-  for(const path of ['./','contribute/','resources/paper-studio/','resources/orbit-field/','resources/quiet-accordion/']){
+  for(const path of ['./','contribute/','connect/','resources/paper-studio/','resources/orbit-field/','resources/quiet-accordion/']){
     await page.goto(path);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
     await expect(page.getByRole('main')).toBeVisible();
@@ -60,4 +60,14 @@ for(const width of [390,768,1440])test(`all pages fit viewport at ${width}px`,as
   expect(errors).toEqual([]);
   await page.goto('./');
   await page.screenshot({path:`test-results/home-${width}.png`,fullPage:true});
+});
+
+test('AI onboarding copy and resource schema are available',async({page,request})=>{
+ await page.goto('connect/');
+ await expect(page.getByRole('heading',{name:'01 · 让 AI 开始使用'})).toBeVisible();
+ await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text:string)=>{document.documentElement.dataset.copied=text;}},configurable:true});});
+ await page.getByRole('button',{name:'复制取用＋贡献指令'}).click();
+ await expect(page.getByRole('status')).toContainText('已复制');
+ expect(await page.locator('html').getAttribute('data-copied')).toContain('我授权');
+ const response=await request.get('api/resource-schema.json');expect(response.ok()).toBeTruthy();expect((await response.json()).required).toContain('license');
 });

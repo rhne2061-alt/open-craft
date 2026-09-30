@@ -14,7 +14,7 @@ flowchart LR
   Build --> Web[资源广场和详情页]
   Build --> JSON[资源 JSON 目录]
   Web --> User[创作者与开发者]
-  JSON -.下一阶段.-> MCP[只读 MCP]
+  Git --> MCP[本地只读 MCP]
   User --> Contributor
 ```
 
@@ -54,7 +54,7 @@ flowchart LR
 
 ## 完成与后续边界
 
-v0.1 实现资源闭环的本地可运行基础。平台级评分、用户账户、评论、收藏、在线投稿、MCP 服务和远程动态预览不在此版本。所有重要选型见 [ADR](adr/0001-static-git-catalog.md)。
+v0.1 实现资源闭环的本地可运行基础。平台级评分、用户账户、评论、收藏、在线投稿、远程托管 MCP 和远程动态预览不在此版本。本地 stdio MCP 及授权后创建 Draft PR 的贡献 CLI 已实现，见 docs/AI.md。所有重要选型见 [ADR](adr/0001-static-git-catalog.md)。
 
 ## 官方依据
 

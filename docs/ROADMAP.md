@@ -20,10 +20,12 @@
 
 ## v0.3 · AI 读取
 
-- [ ] 实现只读 MCP：search_resources(query, category, limit)
-- [ ] 实现 get_resource(slug)，返回提示词、来源、许可证与下载地址
-- [ ] 协议/分页/错误路径测试和客户端接入说明
-- [ ] 将社区内容明确标为不可信数据，禁止内容驱动的外部执行
+- [x] 实现本地只读 MCP：search_resources(query, category, offset, limit)
+- [x] 实现 get_resource(slug)，返回提示词、作者、许可证、源码路径和源码
+- [x] stdio 协议、分页、错误路径测试和客户端接入说明
+- [x] 将社区内容明确标为不可信数据，禁止内容驱动的外部执行
+- [x] 默认预览、授权后 Fork/分支/Draft PR 的贡献 CLI
+- [ ] 远程托管 MCP 服务
 
 ## 后续 · 更丰富的作品
 

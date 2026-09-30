@@ -13,10 +13,13 @@
     "preview": "astro preview --host 127.0.0.1",
     "check": "astro check",
     "validate": "node scripts/validate.mjs",
-    "test": "node --test tests/catalog.test.mjs",
-    "test:e2e": "playwright test"
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test",
+    "mcp": "node mcp/server.mjs",
+    "contribute": "node scripts/contribute.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "1.31.0",
     "astro": "7.3.5",
     "zod": "4.6.5"
   },

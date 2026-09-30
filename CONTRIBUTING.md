@@ -2,6 +2,10 @@
 
 贡献可以是一件作品、一次修复、一个更好的提示词或一份翻译。开始前请阅读 [行为准则](CODE_OF_CONDUCT.md)。
 
+## 使用 AI 自动整理贡献
+
+先阅读 [AI 接入与授权指南](docs/AI.md)。`npm run contribute -- --slug <slug>` 只预览；用户授权后加 `--submit --allow-publish`，工具仅提交同 slug 的 JSON、HTML 和完整许可证文件，创建 Draft PR，不自动合并。所有资源（包括对原有示例的改进）使用该工具时均需同名 `.LICENSE.txt`。
+
 ## 提交资源
 
 1. Fork 并创建分支。复制 `resources/paper-studio.json` 作为起点。

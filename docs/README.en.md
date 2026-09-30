@@ -15,7 +15,7 @@ npm run dev
 
 Check with `npm run validate`, `npm run check`, `npm test`, and `npm run build`. Install Playwright Chromium before `npm run test:e2e`.
 
-Version 0.1 includes a searchable catalog, categories, detail pages, sandboxed previews, prompt copying, source downloads and a static JSON catalog at `api/resources.json`. The JSON endpoint is not an MCP server; MCP is planned.
+Version 0.1 includes a searchable catalog, categories, detail pages, sandboxed previews, prompt copying, source downloads and a static JSON catalog at `api/resources.json`. The JSON endpoint is separate from the local read-only stdio MCP server, which now supports search, resource retrieval and contribution guidance. See [AI onboarding](AI.md) for the opt-in CLI that prepares or submits a scoped draft PR. A hosted remote MCP is not yet provided.
 
 Resources live in `resources/*.json` and `public/examples/*.html`. Fork, add a self-contained HTML/CSS example with authorship and licensing, then open a pull request. See [CONTRIBUTING](../CONTRIBUTING.md). JavaScript and remote dependencies are outside the initial resource scope.
 

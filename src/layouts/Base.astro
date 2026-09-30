@@ -18,7 +18,7 @@ const { title = 'OpenCraft — 好的创造，向所有人开放。', descriptio
     <a class="skip" href="#main">跳到主要内容</a>
     <header class="site-header wrap">
       <a class="brand" href={url()} aria-label="OpenCraft 首页"><span class="brand-mark" aria-hidden="true">✳</span> OpenCraft<span class="beta">ALPHA</span></a>
-      <nav aria-label="主导航"><a href={url('#library')}>探索资源</a><a href={url('contribute/')}>参与共创</a><a class="github-link" href={repo} target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav>
+      <nav aria-label="主导航"><a href={url('#library')}>探索资源</a><a href={url('contribute/')}>参与共创</a><a href={url('connect/')}>连接 AI</a><a class="github-link" href={repo} target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav>
     </header>
     <main id="main"><slot /></main>
     <footer class="site-footer wrap"><a class="brand" href={url()}>✳ OpenCraft</a><p>由贡献连接。因开放生长。</p><div><a href={url('api/resources.json')}>资源 API</a><a href={`${repo}/blob/main/LICENSE`}>MIT License ↗</a></div></footer>
