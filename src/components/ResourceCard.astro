@@ -1,0 +1,20 @@
+---
+import type { Resource } from '../lib/catalog';
+import { categories, url } from '../lib/catalog';
+interface Props { item: Resource; index: number; }
+const { item, index } = Astro.props;
+---
+<article class="resource-card" data-card data-category={item.category} data-search={`${item.title} ${item.description} ${item.tags.join(' ')}`.toLowerCase()}>
+  <a class={`card-art art-${item.slug}`} href={url(`resources/${item.slug}/`)} aria-label={`查看 ${item.title}`}>
+    <span class="card-number">0{index + 1} / OPEN ORIGINAL</span>
+    {item.slug === 'paper-studio' && <div class="paper-art"><span>PAPER / STUDIO</span><strong>Small studio.<br/>Open world.</strong><i></i><span class="mini-button">EXPLORE ↗</span></div>}
+    {item.slug === 'orbit-field' && <div class="orbit-art"><i></i><i></i><i></i><b></b><strong>Ideas have gravity.</strong></div>}
+    {item.slug === 'quiet-accordion' && <div class="faq-art"><span>A LITTLE CLARITY</span><strong>Good questions.</strong><p>What makes it open? <b>−</b></p><small>Made to be shared. Built to be yours.</small><p>Can I make it my own? <b>+</b></p></div>}
+    {!['paper-studio', 'orbit-field', 'quiet-accordion'].includes(item.slug) && <div class="generic-art"><span>COMMUNITY CONTRIBUTION</span><strong>{item.title}</strong><small>进入详情查看实际效果 ↗</small></div>}
+    <span class="card-open">查看资源 ↗</span>
+  </a>
+  <div class="card-meta"><span>{categories[item.category]}</span><span>{item.license} ↗</span></div>
+  <h3><a href={url(`resources/${item.slug}/`)}>{item.title}</a></h3>
+  <p class="card-description">{item.description}</p>
+  <div class="tags">{item.tags.map(tag => <span>{tag}</span>)}</div>
+</article>

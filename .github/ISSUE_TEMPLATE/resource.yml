@@ -1,0 +1,21 @@
+name: Suggest a resource / 推荐资源
+description: 提出一个适合共创的资源想法
+title: "[Resource] "
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea and usefulness / 想法与用途
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Original source / 原始来源
+  - type: textarea
+    id: license
+    attributes:
+      label: License and authorship / 许可证与作者
+      description: 说明是否原创，以及是否有权再分发。未确认授权的建议不会直接收录。
+    validations:
+      required: true

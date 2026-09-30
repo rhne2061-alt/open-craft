@@ -1,0 +1,15 @@
+{
+  "slug": "orbit-field",
+  "title": "Orbit Field",
+  "description": "纯 CSS 绘制的轨道背景。轻量、可调色，让一个简单的首屏也能拥有清晰的视觉中心。",
+  "category": "background",
+  "tags": [
+    "CSS",
+    "几何",
+    "无依赖"
+  ],
+  "author": "OpenCraft contributors",
+  "license": "MIT",
+  "source": "examples/orbit-field.html",
+  "prompt": "创建一个全宽深蓝色视觉背景，中央为由多个倾斜椭圆构成的轨道，中心放置一个亮绿色圆球。使用原生 CSS border、border-radius 和 transform 画出几何结构，不加载外部素材，不使用 JavaScript。文字以独立 HTML 层叠放在背景之上。容器高度随屏幕变化，窄屏不溢出，所有信息在静态情况下保持可读。"
+}

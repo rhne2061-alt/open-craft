@@ -1,0 +1,15 @@
+{
+  "slug": "paper-studio",
+  "title": "Paper Studio",
+  "description": "一张有呼吸感的工作室首页。用编辑式排版、纸张底色与克制的绿色，介绍你的下一件作品。",
+  "category": "section",
+  "tags": [
+    "HTML",
+    "CSS",
+    "编辑式"
+  ],
+  "author": "OpenCraft contributors",
+  "license": "MIT",
+  "source": "examples/paper-studio.html",
+  "prompt": "创建一个工作室首页区块：暖白背景、深绿色强调色，左侧为大号衬线英文标题和中文说明，右侧为抽象几何海报。顶部细线导航，底部有真实锚点按钮。使用语义化 HTML 与原生 CSS，桌面两列、640px 以下单列，不使用外部字体、图片、脚本或追踪代码。内容使用示例文案，不添加虚构客户和统计。"
+}

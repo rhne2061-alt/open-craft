@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import { resources, categories, repo, url } from '../../lib/catalog';
+export function getStaticPaths() { return resources.map(item => ({params: {slug: item.slug}, props: {item}})); }
+const { item } = Astro.props;
+---
+<Base title={`${item.title} — OpenCraft`} description={item.description}>
+  <div class="wrap detail"><a class="back-link" href={url('#library')}>← 返回资源广场</a><div class="detail-heading"><div><p class="eyebrow">{categories[item.category]} / {item.license}</p><h1>{item.title}</h1><p>{item.description}</p></div><a class="button primary" href={url(item.source)} download>下载 HTML 源码 ↓</a></div>
+    <div class="preview-bar"><span><i></i> LIVE PREVIEW · 原生 HTML / CSS</span><div role="group" aria-label="预览尺寸"><button data-width="desktop" aria-pressed="true">桌面</button><button data-width="mobile" aria-pressed="false">手机</button></div></div>
+    <div class="preview-stage"><iframe id="preview" src={url(item.source)} title={`${item.title} 实际效果预览`} sandbox="" loading="lazy"></iframe></div>
+    <div class="detail-grid"><section class="prompt-panel"><div class="panel-heading"><h2>把这个起点，交给 AI。</h2><button id="copy-prompt" class="button">复制提示词</button></div><p id="prompt-text">{item.prompt}</p><p id="copy-status" class="copy-status" role="status" aria-live="polite"></p></section><aside class="info-panel"><h2>开放使用说明</h2><dl><dt>作者</dt><dd>{item.author}</dd><dt>许可证</dt><dd>{item.license}</dd><dt>运行依赖</dt><dd>无 · 浏览器直接打开</dd></dl><p>示例可使用和修改，请保留源码中的许可声明。预览禁用脚本，支持原生 HTML 交互。</p><a href={`${repo}/blob/main/public/${item.source}`}>在 GitHub 查看源码 ↗</a><a href={`${repo}/blob/main/CONTRIBUTING.md`}>把你的改进贡献回来 ↗</a></aside></div>
+  </div>
+</Base>
+<script>
+  document.querySelector('#copy-prompt')?.addEventListener('click', async () => {
+    const status = document.querySelector('#copy-status')!;
+    try { await navigator.clipboard.writeText(document.querySelector('#prompt-text')!.textContent!.trim()); status.textContent = '已复制，可以粘贴到你的 AI 编程工具。'; }
+    catch { status.textContent = '浏览器未允许剪贴板访问，请选中上方提示词手动复制。'; }
+  });
+  const frame = document.querySelector<HTMLIFrameElement>('#preview')!;
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-width]')];
+  buttons.forEach(button => button.addEventListener('click', () => { frame.classList.toggle('mobile-preview', button.dataset.width === 'mobile'); buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button))); }));
+</script>

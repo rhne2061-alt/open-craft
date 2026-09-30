@@ -1,0 +1,15 @@
+name: Report a problem / 报告问题
+description: 页面、资源或文档的问题
+title: "[Bug] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened? / 发生了什么
+      description: 描述复现步骤、预期结果和实际结果。不要提交私密信息。
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and device / 浏览器与设备

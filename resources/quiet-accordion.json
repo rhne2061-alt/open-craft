@@ -1,0 +1,15 @@
+{
+  "slug": "quiet-accordion",
+  "title": "Quiet Accordion",
+  "description": "用浏览器原生能力完成问答展开。支持键盘，不需要框架，把注意力留给内容。",
+  "category": "component",
+  "tags": [
+    "HTML",
+    "无障碍",
+    "FAQ"
+  ],
+  "author": "OpenCraft contributors",
+  "license": "MIT",
+  "source": "examples/quiet-accordion.html",
+  "prompt": "构建一个简约 FAQ 区块，使用原生 details 和 summary 元素实现三个可展开问题。暖灰背景、黑色标题和细线分隔，展开状态有明确视觉提示；为键盘焦点提供清晰轮廓。中文回答使用真实功能说明，不包含营销数据。无需 JavaScript 或外部依赖，移动端保持合适文字宽度和触摸目标，不覆盖浏览器原生键盘行为。"
+}

@@ -1,0 +1,26 @@
+---
+import '../styles/global.css';
+import { repo, url } from '../lib/catalog';
+interface Props { title?: string; description?: string; }
+const { title = 'OpenCraft — 好的创造，向所有人开放。', description = 'AI 时代的开放创作资源库。发现、取用、改进、贡献。提示词与源码一起开放。' } = Astro.props;
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f6f7f2" />
+    <title>{title}</title>
+    <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip" href="#main">跳到主要内容</a>
+    <header class="site-header wrap">
+      <a class="brand" href={url()} aria-label="OpenCraft 首页"><span class="brand-mark" aria-hidden="true">✳</span> OpenCraft<span class="beta">ALPHA</span></a>
+      <nav aria-label="主导航"><a href={url('#library')}>探索资源</a><a href={url('contribute/')}>参与共创</a><a class="github-link" href={repo} target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer wrap"><a class="brand" href={url()}>✳ OpenCraft</a><p>由贡献连接。因开放生长。</p><div><a href={url('api/resources.json')}>资源 API</a><a href={`${repo}/blob/main/LICENSE`}>MIT License ↗</a></div></footer>
+  </body>
+</html>
