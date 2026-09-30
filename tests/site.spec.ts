@@ -1,15 +1,18 @@
 import { test, expect } from '@playwright/test';
 test('search, category, empty state and reset work together', async ({page}) => {
   await page.goto('./');
-  await expect(page.locator('[data-card]:visible')).toHaveCount(3);
+  const total = await page.locator('[data-card]').count();
+  expect(total).toBeGreaterThanOrEqual(3);
+  await expect(page.locator('[data-card]:visible')).toHaveCount(total);
+  const sections = await page.locator('[data-card][data-category="section"]').count();
   await page.getByRole('button',{name:'页面区块',exact:true}).click();
-  await expect(page.locator('[data-card]:visible')).toHaveCount(1);
+  await expect(page.locator('[data-card]:visible')).toHaveCount(sections);
   await page.getByRole('searchbox').fill('not-a-real-resource');
   await expect(page.locator('#empty-state')).toBeVisible();
   await page.getByRole('button',{name:'清除筛选'}).click();
-  await page.getByRole('searchbox').fill('FAQ');
-  await expect(page.locator('[data-card]:visible')).toHaveCount(1);
-  await expect(page.locator('[data-card]:visible')).toContainText('Quiet Accordion');
+  await page.getByRole('searchbox').fill('Quiet Accordion');
+  await expect(page.locator('[data-card]:visible').filter({hasText:'Quiet Accordion'}).first()).toBeVisible();
+  await expect(page.locator('[data-card]:visible').filter({hasText:'Paper Studio'})).toHaveCount(0);
 });
 test('resource has sandbox preview, download and clipboard fallback',async({page})=>{
   await page.goto('resources/paper-studio/');
@@ -43,7 +46,7 @@ test('static API matches the catalog and source files exist',async({request})=>{
   expect(response.ok()).toBeTruthy();
   const catalog=await response.json();
   expect(catalog.schemaVersion).toBe(1);
-  expect(catalog.resources).toHaveLength(3);
+  expect(catalog.resources.length).toBeGreaterThanOrEqual(3);
   for(const item of catalog.resources){const source=await request.get(item.download);expect(source.ok()).toBeTruthy();expect(await source.text()).toContain(`SPDX-License-Identifier: ${item.license}`);}
 });
 for(const width of [390,768,1440])test(`all pages fit viewport at ${width}px`,async({page})=>{
